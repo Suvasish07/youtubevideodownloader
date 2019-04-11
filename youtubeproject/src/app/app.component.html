@@ -59,8 +59,9 @@
             <h3 class="white-text">Download your favorite show ,Video song with GONETUBE</h3>
             <input class="urlinput"type="text" name="namername" placeholder="Type the Video URL to download !"  [(ngModel)]="this.videoUrl">
 
-            <button class="white-btn" (click)="downloadVideo()">Download</button>
-            <button class="main-btn">Cancel</button>
+            <button class="white-btn" (click)="downloadVideo()" *ngIf='this.videoUrl!="" && this.videoUrl!=undefined '>Download</button>
+            <button class="white-btn" (click)="downloadVideo()" *ngIf='this.videoUrl==undefined || this.videoUrl==""' style="cursor:not-allowed;"disabled>Download</button> 
+            <button class="main-btn" (click)="clearURL()">Cancel</button>
           </div>
         </div>
         <!-- /home content -->
