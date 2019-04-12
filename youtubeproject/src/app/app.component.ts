@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {DownloadService} from './service/download.service';
 import Swal from 'sweetalert2';
-
+import { DOCUMENT } from '@angular/common';
+import * as $ from 'jquery'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,15 +10,25 @@ import Swal from 'sweetalert2';
 })
 export class AppComponent {
    videoUrl: any;
-   status:any;
+   videoUrlDetails:any;
+   videoDetailsArr:any=[]
   constructor(private _downloadService: DownloadService){ 
   }
   searchVideos() {
+   document.getElementById("loader").style.display = "block";
+   document.getElementById("videolist").style.display = "none";
+
    this._downloadService.searchVideosService(this.videoUrl).subscribe((data) => {
 
-    this.status = data;
-    if (this.status.status === true) {
-     
+    this.videoUrlDetails = data;
+    if (this.videoUrlDetails.status === true) {
+    
+     this.videoDetailsArr=this.videoUrlDetails.data
+     document.getElementById("loader").style.display = "none";
+     document.getElementById("videolist").style.display = "block";
+     $('html,body').animate({
+      scrollTop: $(".videodiv").offset().top},
+      'slow');
     } else {
       Swal.fire(
         'Error',
@@ -29,6 +40,7 @@ export class AppComponent {
  }
  clearURL() {
    this.videoUrl = '';
+
  }
 
 

@@ -15,7 +15,7 @@
         <!-- Logo -->
         <div class="navbar-brand">
           <a href="index.html" class="gonetube">
-           GONETUBE
+           G-ONETUBE
           </a>
         </div>
         <!-- /Logo -->
@@ -47,22 +47,26 @@
     </div>
   </nav>
   <!-- /Nav -->
-
+  
   <!-- home wrapper -->
   <div class="home-wrapper">
     <div class="container">
       <div class="row">
 
         <!-- home content -->
+     
         <div class="col-md-10 col-md-offset-1">
           <div class="home-content">
-            <h3 class="white-text">Download your favorite show ,Video song with GONETUBE</h3>
-            <input class="urlinput"type="text" name="namername" placeholder="Type the Video URL to download !"  [(ngModel)]="this.videoUrl">
+            <h3 class="white-text">Download your favorite Shows,Movies,Video song with G-ONETUBE</h3>
+            <input class="urlinput"type="text" name="namername" placeholder="Type the video URL or video name to download !"  [(ngModel)]="this.videoUrl">
 
             <button class="white-btn" (click)="searchVideos()" *ngIf='this.videoUrl!="" && this.videoUrl!=undefined '>Search</button>
             <button class="white-btn" (click)="searchVideos()" *ngIf='this.videoUrl==undefined || this.videoUrl==""' style="cursor:not-allowed;"disabled>Search</button> 
             <button class="main-btn" (click)="clearURL()">Cancel</button>
           </div>
+
+          <img src="assets/img/loader.gif" alt="loader" style="display:none;margin: auto;" id="loader">
+
         </div>
         <!-- /home content -->
 
@@ -75,52 +79,35 @@
 <!-- /Header -->
 
 <!-- About -->
-<div id="about" class="section md-padding">
+<div  class="section md-padding" id="videolist" style="display:none">
 
   <!-- Container -->
-  <div class="container">
+  <div class="container " >
 
-    <!-- Row -->
-    <div class="row">
+      <div class="section-header text-center">
+          <h2 class="title videodiv">Matches Found</h2>
+        </div >    
+        
+        <div class="row" >
 
       <!-- Section header -->
-      <div class="section-header text-center">
-        <h2 class="title">Welcome to Website</h2>
-      </div>
+      
       <!-- /Section header -->
 
-      <!-- about -->
-      <div class="col-md-4">
-        <div class="about">
-          <i class="fa fa-cogs"></i>
-          <h3>Fully Customizible</h3>
-          <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-          <a href="#">Read more</a>
-        </div>
-      </div>
-      <!-- /about -->
+          
+          <div class="col-md-4 videodivcls" *ngFor="let url of this.videoDetailsArr" style="margin-bottom:10px;">
+            <div class="card" style="width:10em; text-align: center;margin-bottom: 5%;margin: auto;">
+                  <img class="card-img-top imgcls video-btn"  src={{url.thumbnailurl}}  alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-title" style="margin-top:10px">{{url.title}}</p>
+                    <a href="#" class="btn btn-primary">Download</a>
+                  </div>
 
-      <!-- about -->
-      <div class="col-md-4">
-        <div class="about">
-          <i class="fa fa-magic"></i>
-          <h3>Awesome Features</h3>
-          <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-          <a href="#">Read more</a>
-        </div>
-      </div>
-      <!-- /about -->
+                </div>
+            </div>
+     
 
-      <!-- about -->
-      <div class="col-md-4">
-        <div class="about">
-          <i class="fa fa-mobile"></i>
-          <h3>Fully Responsive</h3>
-          <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-          <a href="#">Read more</a>
-        </div>
-      </div>
-      <!-- /about -->
+
 
     </div>
     <!-- /Row -->
@@ -907,5 +894,45 @@
   </div>
 </div>
 <!-- /Preloader -->
+
+<div class="container">
+  
+  
+ <!-- Button trigger modal -->
+
+  
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/IP7uGKgJL8U" data-target="#myModal">
+  Play Video 2
+</button>
+  
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+</div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
+  
+  
+  
+</div>
 
 

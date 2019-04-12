@@ -10,8 +10,8 @@ from pytube import YouTube
 from time import sleep
 
 from pathlib import Path
-home = str(Path.home())
-# home = '/home/jeevan/Downloads'
+# home = str(Path.home())
+home = '/home/jeevan/Downloads'
 
 app = Flask(__name__)
 CORS(app)
@@ -35,8 +35,8 @@ def foo():
             status=True
             title=yt.title
             thumbnailurl=yt.thumbnail_url
-            url=videourl
-            item={"title":title,"thumbnailurl":thumbnailurl,"url":url}
+            linkurl=videourl
+            item={"title":title,"thumbnailurl":thumbnailurl,"linkurl":videourl}
             videoInfo.append(item)
             # path=SAVE_PATH
         except pytube.exceptions.RegexMatchError:
@@ -72,17 +72,17 @@ def foo():
         count=0
         videolist=[]
         listlength=round(len(videoURLList)/3)
-        for url in videoURLList:
+        for link in videoURLList:
             count +=1
             if(count==listlength):
                 break
-            yt=pytube.YouTube(url)
+            yt=pytube.YouTube(link)
             sleep(1)
             title=yt.title
             print(title)
             print(count)
             thumbnailurl=yt.thumbnail_url
-            item={"title":title,"thumbnailurl":thumbnailurl,"url":url}
+            item={"title":title,"thumbnailurl":thumbnailurl,"linkurl":link}
             videolist.append(item)
             yt=[]
         return json.dumps({"data":videolist,"status":True})
