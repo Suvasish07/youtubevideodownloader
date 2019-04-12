@@ -62,12 +62,14 @@ def foo():
         videoURLList = list(set(videoURLList))
         count=0
         videolist=[]
-        listlength=len(videoURLList)
-        print(listlength)
+        listlength=round(len(videoURLList)/3)
+        print(round(listlength/3))
         for url in videoURLList:
-            sleep(0.5)
             count +=1
+            if(count==listlength):
+                break
             yt=pytube.YouTube(url)
+            sleep(1)
             title=yt.title
             print(title)
             print(count)
