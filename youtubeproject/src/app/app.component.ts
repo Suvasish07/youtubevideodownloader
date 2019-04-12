@@ -12,16 +12,12 @@ export class AppComponent {
    status:any;
   constructor(private _downloadService: DownloadService){ 
   }
- downloadVideo() {
-   this._downloadService.downloadVideoService(this.videoUrl).subscribe((data) => {
+  searchVideos() {
+   this._downloadService.searchVideosService(this.videoUrl).subscribe((data) => {
 
     this.status = data;
     if (this.status.status === true) {
-      Swal.fire(
-        'Success!',
-        'The Video succesfully downloaded In ' + this.status.path,
-        'success'
-      );
+     
     } else {
       Swal.fire(
         'Error',

@@ -8,9 +8,9 @@ export class DownloadService {
 
   constructor(private httpClient: HttpClient) { }
  
-  downloadVideoService(videourl){
+  searchVideosService(videourl){
     console.log(videourl);
-    return this.httpClient.post('http://localhost:5000/videourl',{'videourl':videourl});
+    return this.httpClient.post('http://localhost:5001/videourl',{'videourl':videourl});
   }
 
 
